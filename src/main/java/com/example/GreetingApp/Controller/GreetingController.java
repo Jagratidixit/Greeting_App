@@ -1,5 +1,4 @@
 package com.example.GreetingApp.Controller;
-
 import com.example.GreetingApp.Model.Greeting;
 import com.example.GreetingApp.Service.GreetingService;
 import org.springframework.web.bind.annotation.*;
@@ -24,5 +23,10 @@ public class GreetingController {
     @GetMapping
     public List<Greeting> getAllGreetings() {
         return greetingService.getAllGreetings();
+    }
+
+    @PutMapping("/{id}")
+    public Greeting updateGreeting(@PathVariable Long id, @RequestParam String message) {
+        return greetingService.updateGreeting(id, message);
     }
 }
