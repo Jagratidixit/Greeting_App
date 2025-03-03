@@ -1,12 +1,13 @@
 package com.example.GreetingApp.Controller;
 
-
 import com.example.GreetingApp.Model.Greeting;
 import com.example.GreetingApp.Service.GreetingService;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
-@RequestMapping("/greeting")
+@RequestMapping("/api/greetings")
 public class GreetingController {
     private final GreetingService greetingService;
 
@@ -16,11 +17,12 @@ public class GreetingController {
 
     @PostMapping
     public Greeting saveGreeting(@RequestParam String message) {
-        return greetingService.saveGreeting(message);
+        Greeting greeting = new Greeting(message);
+        return greetingService.saveGreeting(greeting);
     }
 
-    @GetMapping("/{id}")
-    public Greeting getGreetingById(@PathVariable Long id) {
-        return greetingService.findGreetingById(id);
+    @GetMapping
+    public List<Greeting> getAllGreetings() {
+        return greetingService.getAllGreetings();
     }
 }
