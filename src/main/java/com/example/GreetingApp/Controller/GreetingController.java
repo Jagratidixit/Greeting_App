@@ -19,6 +19,12 @@ public class GreetingController {
         Greeting greeting = new Greeting(message);
         return greetingService.saveGreeting(greeting);
     }
+    @DeleteMapping("/{id}")
+    public String deleteGreeting(@PathVariable Long id) {
+        greetingService.deleteGreeting(id);
+        return "Greeting with ID " + id + " deleted successfully.";
+    }
+
 
     @GetMapping
     public List<Greeting> getAllGreetings() {
