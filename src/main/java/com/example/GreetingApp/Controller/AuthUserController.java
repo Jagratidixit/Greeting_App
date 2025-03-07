@@ -40,6 +40,15 @@ public class AuthUserController {
         String response = service.forgotPassword(email, newPassword);
         return ResponseEntity.ok(response);
     }
+    @PutMapping("/resetPassword/{email}")
+    public ResponseEntity<String> resetPassword(
+            @PathVariable String email,
+            @RequestBody Map<String, String> requestBody) {
+        String currentPassword = requestBody.get("currentPassword");
+        String newPassword = requestBody.get("newPassword");
+        String response = service.resetPassword(email, currentPassword, newPassword);
+        return ResponseEntity.ok(response);
+    }
 
 
 }

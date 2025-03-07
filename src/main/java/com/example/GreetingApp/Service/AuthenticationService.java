@@ -80,6 +80,23 @@ public class AuthenticationService {
 
         return "Password has been changed successfully!";
     }
+    // UC13: Reset Password
+    public String resetPassword(String email, String currentPassword, String newPassword) {
+        Optional<AuthUser> userOptional = authUserRepository.findByEmail(email);
+        if (userOptional.isEmpty()) {
+            return "User not found with email: " + email;
+        }
+
+        AuthUser user = userOptional.get();
+        if (!passwordEncoder.matches(currentPassword, user.getPassword())) {
+            return "Current password is incorrect!";
+        }
+
+        user.setPassword(passwordEncoder.encode(newPassword));
+        authUserRepository.save(user);
+
+        return "Password reset successfully!";
+    }
 
 
 }
