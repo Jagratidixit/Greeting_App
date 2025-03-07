@@ -8,7 +8,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/greetings")
 public class GreetingController {
-    private final GreetingService greetingService;
+    GreetingService greetingService;
 
     public GreetingController(GreetingService greetingService) {
         this.greetingService = greetingService;

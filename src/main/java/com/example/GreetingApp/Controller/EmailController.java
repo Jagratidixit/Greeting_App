@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/email")
 public class EmailController {
 
-    private final EmailService emailService;
+    EmailService emailService;
 
     public EmailController(EmailService emailService) {
         this.emailService = emailService;
